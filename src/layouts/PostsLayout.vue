@@ -1,52 +1,40 @@
 <template>
-  <q-layout view="hHh lpR fFf">
-    <div>
-      <q-header elevated class="bg-primary text-white">
-        <q-toolbar>
-          <q-toolbar-title> Posts </q-toolbar-title>
-        </q-toolbar>
-      </q-header>
-    </div>
-
-    <div>
-      <q-table
-        flat
-        bordered
-        grid
-        title="Treats"
-        :rows="rows"
-        :columns="columns"
-        row-key="name"
-        :filter="filter"
-        hide-header
-      >
-        <template v-slot:top-right>
-          <q-input
-            borderless
-            dense
-            debounce="300"
-            v-model="filter"
-            placeholder="Search"
-          >
-            <template v-slot:append>
-              <q-icon name="search" />
-            </template>
-          </q-input>
-        </template>
-      </q-table>
-    </div>
-  </q-layout>
+  <q-page padding>
+    <q-input
+      borderless
+      dense
+      debounce="300"
+      v-model="filter"
+      placeholder="Search"
+      label="search"
+    />
+    <q-table
+      flat
+      bordered
+      grid
+      title="Treats"
+      :rows="array"
+      :columns="columns"
+      row-key="name"
+      :filter="filter"
+    />
+  </q-page>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import "components/PostsCard.vue";
 import { api } from "src/boot/axios";
-let array = ref("");
+let array = ref([]);
+let filter = ref("");
+
 async function results() {
   const { data: result } = await api.get("/posts");
-  return result;
+  array.value = result;
 }
-array.value = results();
-console.log(array.value);
+
+onMounted(async () => {
+  await results();
+  console.log(array.value);
+});
 </script>
