@@ -12,7 +12,7 @@
       flat
       bordered
       grid
-      title="Treats"
+      title="Posts"
       :rows="array"
       :columns="columns"
       row-key="name"
