@@ -5,6 +5,11 @@ const routes = [
     children: [
       { path: "", component: () => import("pages/IndexPage.vue") },
       { path: "posts", component: () => import("layouts/PostsLayout.vue") },
+      {
+        path: "posts/:id/:title",
+        name: "post",
+        component: () => import("pages/PostPage.vue"),
+      },
     ],
   },
   // Always leave this as last one,

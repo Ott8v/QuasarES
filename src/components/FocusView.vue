@@ -1,5 +1,5 @@
 <template>
-    <q-dialog>
+  <q-dialog>
     <q-card class="my-card">
       <q-card-section>
         <div class="row no-wrap items-center">
@@ -10,22 +10,30 @@
       </q-card-section>
 
       <q-card-section class="q-pt-none">
-          <div class="text-subtitle1">
-            By user: {{ obj.userId }}
-          </div>
+        <div class="text-subtitle1">By user: {{ obj.userId }}</div>
       </q-card-section>
       <q-card-section class="q-pt-none">
-          <div class="text-caption text-grey">
-            {{ obj.body }}
-          </div>
-        </q-card-section>
-
+        <div class="text-caption text-grey">
+          {{ obj.body }}
+        </div>
+        <q-btn
+          color="primary"
+          label="Details"
+          @click="goToDetails(obj.userId, obj.title)"
+        />
+      </q-card-section>
     </q-card>
-    </q-dialog>
+  </q-dialog>
 </template>
 
 <script setup>
-    defineProps({
-        obj: Object,
-    })
+import { useRouter } from "vue-router";
+const router = useRouter();
+defineProps({
+  obj: Object,
+});
+
+function goToDetails(id, title) {
+  router.push({ name: "post", params: { id: id, title: title } });
+}
 </script>

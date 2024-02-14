@@ -41,6 +41,5 @@ async function results() {
 
 onMounted(async () => {
   await results();
-  console.log(array.value);
 });
 </script>
