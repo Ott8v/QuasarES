@@ -40,10 +40,8 @@ function likePost() {
 }
 async function find() {
   const id = router.currentRoute.value.params.id;
-  const title = router.currentRoute.value.params.title;
   const { data: result } = await api.get("/posts");
-  obj.value = result.filter((elm) => id == elm.userId && title == elm.title)[0];
-  console.log(obj.value);
+  obj.value = result.filter((elm) => id == elm.id)[0];
 }
 
 onMounted(async () => await find());

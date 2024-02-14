@@ -16,11 +16,7 @@
         <div class="text-caption text-grey">
           {{ obj.body }}
         </div>
-        <q-btn
-          color="primary"
-          label="Details"
-          @click="goToDetails(obj.userId, obj.title)"
-        />
+        <q-btn color="primary" label="Details" @click="goToDetails(obj.id)" />
       </q-card-section>
     </q-card>
   </q-dialog>
@@ -33,7 +29,7 @@ defineProps({
   obj: Object,
 });
 
-function goToDetails(id, title) {
-  router.push({ name: "post", params: { id: id, title: title } });
+function goToDetails(id) {
+  router.push({ name: "post", params: { id } });
 }
 </script>

@@ -6,7 +6,7 @@ const routes = [
       { path: "", component: () => import("pages/IndexPage.vue") },
       { path: "posts", component: () => import("layouts/PostsLayout.vue") },
       {
-        path: "posts/:id/:title",
+        path: "posts/:id",
         name: "post",
         component: () => import("pages/PostPage.vue"),
       },
