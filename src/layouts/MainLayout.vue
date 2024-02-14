@@ -50,7 +50,7 @@ const linksList = [
     title: "Posts",
     caption: "posts",
     icon: "image",
-    link: "posts",
+    link: "/posts",
   },
 ];
 
