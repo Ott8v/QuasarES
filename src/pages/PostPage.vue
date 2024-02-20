@@ -9,13 +9,13 @@
     </q-card-section>
     <q-card-section>
       <q-icon
-        v-show="!like"
+        v-show="!liked"
         size="30px"
         name="fa-regular fa-thumbs-up"
         @click="likePost()"
       />
       <q-icon
-        v-show="like"
+        v-show="liked"
         size="30px"
         name="fa-solid fa-thumbs-up"
         @click="likePost()"
@@ -32,6 +32,7 @@ import { useRouter } from "vue-router";
 import { userStore } from "src/stores/user.js";
 import { likeStore } from "src/stores/likes.js";
 import Login from "src/components/LoginPopUp.vue";
+import { computed } from "vue";
 const router = useRouter();
 const uStore = userStore();
 const lStore = likeStore();
@@ -39,17 +40,24 @@ let stat = ref(false);
 let obj = ref({});
 let like = ref(false);
 
+const liked = computed(() => {
+  const ar = lStore.getLikeposts.value;
+  if (ar.includes(obj.value.id)) {
+    return true;
+  } else {
+    return false;
+  }
+});
+
 function likePost() {
   if (uStore.loginStatus == false) {
     stat.value = true;
     return;
   }
 
-  if (like.value == false) {
-    like.value = true;
+  if (liked.value == false) {
     lStore.addLikePost(obj.value.id);
   } else {
-    like.value = false;
     lStore.removeLikePost(obj.value.id);
   }
 }
