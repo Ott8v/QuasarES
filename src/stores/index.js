@@ -18,6 +18,10 @@ export default store((/* { ssrContext } */) => {
   // You can add Pinia plugins here
   // pinia.use(SomePiniaPlugin)
   pinia.use(piniaPluginPersistedstate);
-  pinia.use(PiniaLogger);
+  pinia.use(
+    PiniaLogger({
+      expanded: false,
+    })
+  );
   return pinia;
 });

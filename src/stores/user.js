@@ -8,15 +8,15 @@ export const userStore = defineStore(
     const loginValue = ref(false);
     const userValue = computed(() => user.value);
     const loginStatus = computed(() => loginValue.value);
-    function logIn() {
+    const logIn = () => {
       console.log("login");
       loginValue.value = true;
-    }
-    function logOut() {
+    };
+    const logOut = () => {
       loginValue.value = false;
-    }
+    };
 
-    return { loginStatus, logIn, logOut, userValue };
+    return { loginValue, loginStatus, logIn, logOut, userValue };
   },
   { persist: true }
 );

@@ -1,5 +1,5 @@
 <template>
-  <q-dialog v-model="dialog" persistent>
+  <q-dialog :model-value="true" persistent>
     <q-card>
       <q-card-section class="row items-center">
         <q-avatar
@@ -23,7 +23,7 @@
           flat
           label="Login"
           color="primary"
-          @click="login()"
+          @click="login"
           v-close-popup
         />
       </q-card-actions>
@@ -33,18 +33,14 @@
 
 <script setup>
 import { ref } from "vue";
-// import { userStore } from "src/stores/user.js";
-import { useCounterStore } from "src/stores/example-store";
-const store = useCounterStore();
-let firstName = ref("");
-let lastName = ref("");
+import { userStore } from "src/stores/user.js";
+const store = userStore();
+const firstName = ref("");
+const lastName = ref("");
 
-store.increment();
-// const login = () => {
-//   const user = store.userValue;
-//   console.log(user);
-//   if (firstName.value == user.firstName && lastName.value == user.lastName) {
-//     store.logIn();
-//   }
-// };
+const login = () => {
+  const user = store.userValue;
+  console.log(user);
+  store.logIn();
+};
 </script>
