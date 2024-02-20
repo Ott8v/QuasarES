@@ -38,7 +38,6 @@ const uStore = userStore();
 const lStore = likeStore();
 let stat = ref(false);
 let obj = ref({});
-let like = ref(false);
 
 const liked = computed(() => {
   const ar = lStore.getLikeposts.value;
