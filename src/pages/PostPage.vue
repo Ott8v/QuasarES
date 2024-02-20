@@ -30,22 +30,27 @@ import { api } from "src/boot/axios";
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { userStore } from "src/stores/user.js";
+import { likeStore } from "src/stores/likes.js";
 import Login from "src/components/LoginPopUp.vue";
 const router = useRouter();
-const store = userStore();
+const uStore = userStore();
+const lStore = likeStore();
 let stat = ref(false);
 let obj = ref({});
 let like = ref(false);
+
 function likePost() {
-  if (store.loginStatus == false) {
+  if (uStore.loginStatus == false) {
     stat.value = true;
     return;
   }
 
   if (like.value == false) {
     like.value = true;
+    lStore.addLikePost(obj.value.id);
   } else {
     like.value = false;
+    lStore.removeLikePost(obj.value.id);
   }
 }
 async function find() {
