@@ -5,10 +5,11 @@ export const userStore = defineStore(
   "user",
   () => {
     const user = ref({ firstName: "pippo", lastName: "pippo" });
-    let loginValue = ref(false);
+    const loginValue = ref(false);
     const userValue = computed(() => user.value);
     const loginStatus = computed(() => loginValue.value);
     function logIn() {
+      console.log("login");
       loginValue.value = true;
     }
     function logOut() {

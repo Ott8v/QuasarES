@@ -33,15 +33,18 @@
 
 <script setup>
 import { ref } from "vue";
-import { userStore } from "src/stores/user.js";
-const store = userStore();
+// import { userStore } from "src/stores/user.js";
+import { useCounterStore } from "src/stores/example-store";
+const store = useCounterStore();
 let firstName = ref("");
 let lastName = ref("");
 
-function login() {
-  const user = store.userValue;
-  if (firstName.value == user.firstName && lastName.value == user.lastName) {
-    store.logIn();
-  }
-}
+store.increment();
+// const login = () => {
+//   const user = store.userValue;
+//   console.log(user);
+//   if (firstName.value == user.firstName && lastName.value == user.lastName) {
+//     store.logIn();
+//   }
+// };
 </script>
