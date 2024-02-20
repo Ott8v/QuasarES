@@ -37,7 +37,7 @@ const uStore = userStore();
 const lStore = likeStore();
 let stat = ref(false);
 let obj = ref({});
-let like = ref(false);
+let like = ref(lStore.checkLikePost(obj.value.id));
 
 function likePost() {
   if (uStore.loginStatus == false) {
