@@ -6,13 +6,6 @@ export const likeStore = defineStore(
   () => {
     let likePosts = ref([]);
     const getLikeposts = computed(() => likePosts);
-    const checkLikePost = (id) => {
-      if (likePosts.value.includes(id)) {
-        return true;
-      } else {
-        return false;
-      }
-    };
     const addLikePost = (id) => {
       likePosts.value.push(id);
     };
@@ -24,7 +17,6 @@ export const likeStore = defineStore(
       getLikeposts,
       addLikePost,
       removeLikePost,
-      checkLikePost,
     };
   },
   { persist: true }
